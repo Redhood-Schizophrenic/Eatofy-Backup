@@ -1,0 +1,27 @@
+//hotels.prisma
+
+model Hotels {
+  id             String           @id @default(uuid())
+  HotelName      String           @unique
+  Email          String           @unique
+  HashedPassword String
+  SaltPassword   String
+  Address        String
+  Speciality     String[]
+  Ratings        Float
+  HotelLogo      Bytes
+  Contacts       String[]
+  Website        String
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  HotelSchedules Hotel_Schedule[] // Optional: if you need to access schedules from Hotels, otherwise ignore in queries
+}
+
+model Hotel_Schedule {
+  id          String @id @default(uuid())
+  Day         String
+  OpeningTime String
+  ClosingTime String
+  HotelId     String // Foreign key field
+  Hotel       Hotels @relation(fields: [HotelId], references: [id])
+}
