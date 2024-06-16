@@ -1,8 +1,8 @@
 export default interface User{
-	id: String
-	Username: String
-	Email: String
-	Password: String
+	id: string
+	Username: string
+	Email: string 
+	Password: string
 	createdAt: DateTime
 	updatedAt: DateTime
 }

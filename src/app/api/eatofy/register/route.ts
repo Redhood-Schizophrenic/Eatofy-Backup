@@ -1,8 +1,9 @@
-import { login_user } from "./logic";
+import { register_user } from "./logic";
+
 export async function POST(request: Request) {
 	try {
 		const data = await request.json();
-		const result = await login_user(data);
+		const result = await register_user(data);
 		return Response.json(
 			{
 				returncode: result.returncode,
@@ -15,7 +16,7 @@ export async function POST(request: Request) {
 		return Response.json(
 			{
 				returncode: 500,
-				message: `Error Authenticating user: ${error.message}`,
+				message: `Error Registering user: ${error.message}`,
 				output: []
 			}
 		);
