@@ -89,3 +89,35 @@ http://localhost:3000/api/hotels/remove
 
 ----------------------------------------------------------------------------------
 
+### Hotel's Schedule Module
+
+###### 1. Add Hotel's Schedule
+http://localhost:3000/api/hotels/schedules/add
+`POST`
+```json
+{
+    "hotel_id": "746b728d-ff30-43fc-8ca6-643mdlkf5a5c",
+    "day": "Monday",
+    "open_time": "09:00:00",
+    "close_time": "17:00:00"
+}
+```
+
+###### 2. Fetch
+`POST`
+```json
+{
+    "hotel_id":"746b728d-ff30-43fc-8ca6-643mdlkf5a5c"
+}
+```
+###### 3. Schedule Delete
+http://localhost:3000/api/hotels/remove
+`DELETE`
+```json
+{
+    "schedule_id": "ba4c0332-317f-4609-b011-6268f4bd12fc"
+}
+```
+
+----------------------------------------------------------------------------------
+
