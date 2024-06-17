@@ -47,6 +47,8 @@ export async function update_hotel_profile(data: any): Promise<HotelResponse> {
 			},
 		});
 
+		db.$disconnect();
+
 		return {
 			returncode: 200,
 			message: "Hotel Updated",

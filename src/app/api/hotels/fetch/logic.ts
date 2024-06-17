@@ -35,6 +35,8 @@ export async function fetch_hotel(data: any): Promise<HotelResponse> {
 			hotel.HotelLogo = hotel.HotelLogo?.toString('base64');
 		});
 
+		db.$disconnect();
+
 		return {
 			returncode: 200,
 			message: "Hotel Fetched",
@@ -68,6 +70,8 @@ export async function fetch_hotels(): Promise<HotelResponse> {
 		existingHotels.forEach(hotel => {
 			hotel.HotelLogo = hotel.HotelLogo?.toString('base64');
 		});
+
+		db.$disconnect();
 
 		return {
 			returncode: 200,

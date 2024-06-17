@@ -39,6 +39,8 @@ export async function delete_user(data: any): Promise<UserResponse> {
 			},
 		});
 
+		db.$disconnect();
+
 		return {
 			returncode: 200,
 			message: "User Deleted",

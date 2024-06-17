@@ -88,6 +88,7 @@ export async function register_user(data: any): Promise<UserResponse> {
 			},
 		});
 
+		db.$disconnect();
 
 		return {
 			returncode: 200,

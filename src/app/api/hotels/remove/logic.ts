@@ -38,6 +38,8 @@ export async function delete_hotel(data: any): Promise<HotelResponse> {
 			},
 		});
 
+		db.$disconnect();
+
 		return {
 			returncode: 200,
 			message: "Hotel Deleted",

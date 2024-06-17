@@ -77,7 +77,9 @@ export async function login_user(data: any): Promise<UserResponse> {
 				return;
 			}
 		});
-		
+
+		db.$disconnect()
+
 		if(result!=undefined)
 		{
 			return result;

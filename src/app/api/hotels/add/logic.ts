@@ -48,6 +48,7 @@ export async function add_hotel(data: any): Promise<HotelResponse> {
 			},
 		});
 
+		db.$disconnect();
 
 		return {
 			returncode: 200,

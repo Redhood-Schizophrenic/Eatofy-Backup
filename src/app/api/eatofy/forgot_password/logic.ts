@@ -89,6 +89,8 @@ export async function update_password(data: any): Promise<UserResponse> {
 				}
 			}
 
+			db.$disconnect();
+
 			if (!result) {
 				return {
 					returncode: 400,
