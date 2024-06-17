@@ -1,13 +1,17 @@
-import { login_user } from "./logic";
+import { fetch_hotel, fetch_hotels } from "./logic";
+
 export async function POST(request: Request) {
 	try {
 		const data = await request.json();
-		const result = await login_user(data);
+		const result = await fetch_hotel(data);
 		return Response.json(
 			{
 				returncode: result.returncode,
 				message: result.message,
 				output: result.output
+			},
+			{
+				status: result.returncode
 			}
 		);
 	}
@@ -15,10 +19,40 @@ export async function POST(request: Request) {
 		return Response.json(
 			{
 				returncode: 500,
-				message: `Error Authenticating user: ${error.message}`,
+				message: `Error Fetching Hotel: ${error.message}`,
 				output: []
+			},
+			{
+				status: 500
 			}
 		);
 	}
 }
 
+export async function GET() {
+	try {
+		const result = await fetch_hotels();
+		return Response.json(
+			{
+				returncode: result.returncode,
+				message: result.message,
+				output: result.output
+			},
+			{
+				status: result.returncode
+			}
+		);
+	}
+	catch (error: any) {
+		return Response.json(
+			{
+				returncode: 500,
+				message: `Error Fetching Hotel: ${error.message}`,
+				output: []
+			},
+			{
+				status: 500
+			}
+		);
+	}
+}

@@ -1,9 +1,9 @@
-import { add_hotel } from "./logic";
+import { update_hotel_profile } from "./logic";
 
-export async function POST(request: Request) {
+export async function PUT(request: Request) {
 	try {
 		const data = await request.formData();
-		const result = await add_hotel(data);
+		const result = await update_hotel_profile(data);
 		return Response.json(
 			{
 				returncode: result.returncode,
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
 		return Response.json(
 			{
 				returncode: 500,
-				message: `Error Adding Hotel: ${error.message}`,
+				message: `Error Updating Hotel Profile: ${error.message}`,
 				output: []
 			},
 			{

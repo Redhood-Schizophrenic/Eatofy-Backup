@@ -1,51 +1,51 @@
+## 🚀 Project API Structure
 
-# API Requests
+Inside of your api, you'll see the following folders and files:
 
-
-----------------------------------------------------------------------------------
-
-### Eatofy Authentication
-
-###### 1. Login
-http://localhost:3000/api/eatofy/login
-`POST`
-```json
-{
-    "email":"user@mail.co",
-    "password":"123"
-}
+```text
+/
+├── api/
+│   └── eatofy/
+│       └── register/
+│       └── login/
+│       └── forgot_password/
+│       └── delete_account/
+│   └── hotels/
+│       └── add/
+│       └── fetch/
+│       └── update/
+│           └── details/
+│           └── profile/
+│       └── remove/
+│       └── schedules/
 ```
 
-###### 2. Register (*To be used one time only*)
-http://localhost:3000/api/eatofy/register
-`POST`
-```json
-{
-    "username":"User",
-    "email":"user@gmail.com",
-    "password":"123"
-}
+Inside of your project, you'll see the following folders and files:
+
+```text
+/
+├── src/
+│   └── app/
+│       └── api/
+│   └── lib/
+│       └── Database Connector
+│       └── utils/
+│           └── Password Hashing
+│   └── model/
+│       └── Interfaces
+│   └── schemas/
+│       └── Zod Checkers
+│   └── types/
+│       └── Response Interfaces
 ```
 
-###### 3. Forgot Password 
-http://localhost:3000/api/eatofy/forgot_password
-`PUT`
-```json
-{
-    "email": "user@gmail.com",
-    "old_password": "123",
-    "new_password": "123456"
-}
-```
+## 🧞 Commands 
 
-###### 4. Account Delete
-http://localhost:3000/api/eatofy/delete_account
-`POST`
-```json
-{
-    "user_id": "ba4c0332-317f-4609-b011-6268f4bd12fc"
-}
-```
+All commands are run from the root of the project, from a terminal:
 
-----------------------------------------------------------------------------------
-
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npx prisma init`         | Initialise Prisma Command                        |
+| `npm run dev`             | Starts local dev server                          |
+| `npx prisma generate`     | Generate the code using schema.prisma            |
+| `npx prisma migrate dev`  | Migrate Database                                 |

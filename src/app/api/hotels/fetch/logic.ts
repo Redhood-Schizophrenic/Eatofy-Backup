@@ -1,16 +1,13 @@
 import db from '../../../../lib/db';
-import { UserResponse } from '@/types/UserResponse';
-import { login } from '@/schemas/Authentication/login';
-import { ZodError } from 'zod';
+import { HotelResponse } from '@/types/HotelResponse';
 
-export async function login_user(data: any): Promise<UserResponse> {
+export async function fetch_hotel(data: any): Promise<HotelResponse> {
 	try {
 
-		const email: string | null = data['email'];
-		const password: string | null = data['password'];
+		const hotel_name: string | null = data['hotel_name'];
 
 		// Default Invalid Checker
-		if (email == null || password == null) {
+		if (hotel_name === null) {
 			return {
 				returncode: 400,
 				message: 'Invalid Input',
@@ -19,74 +16,29 @@ export async function login_user(data: any): Promise<UserResponse> {
 
 		}
 
-		//Zod Input Checker
-		try {
-			var UserSchema = login.parse(data);
-			UserSchema
-		} catch (error: ZodError | any) {
-			try {
-				const err = JSON.parse(error.message);
-				let error_message = '';
-				await (err as any).forEach((obj: any) => {
-					error_message = obj.message;
-				});
-
-				return {
-					returncode: 400,
-					message: error_message,
-					output: []
-				};
-
-
-			} catch (error: any) {
-				return {
-					returncode: 400,
-					message: error.message,
-					output: []
-				};
-
-			}
-		}
-
-		// If User doesn't exists
-		const existingEmail = await db.user.findMany({
+		// If Hotel doesn't exists
+		const existingHotel = await db.hotels.findMany({
 			where: {
-				Email: { equals: email }
+				HotelName: { equals: hotel_name }
 			}
 		});
 
-		if (existingEmail.length == 0) {
+		if (existingHotel.length == 0) {
 			return {
 				returncode: 307,
-				message: "User Email doesn't Exists, please register",
+				message: "Hotel doesn't Exists, please add one",
 				output: []
 			}
 		}
 
-		//Update Password
-		let result;
-		existingEmail.forEach((user: any) => {
-			if (user.Password == password) {
-
-				result = {
-					returncode: 200,
-					message: "User Logged In",
-					output: existingEmail
-				};
-
-				return;
-			}
+		existingHotel.forEach(hotel => {
+			hotel.HotelLogo = hotel.HotelLogo?.toString('base64');
 		});
-		
-		if(result!=undefined)
-		{
-			return result;
-		}
 
 		return {
-			returncode: 400,
-			message: "Password Doesn't Match",
-			output: []
+			returncode: 200,
+			message: "Hotel Fetched",
+			output: existingHotel
 		};
 
 	} catch (error: any) {
@@ -98,3 +50,36 @@ export async function login_user(data: any): Promise<UserResponse> {
 	}
 }
 
+
+export async function fetch_hotels(): Promise<HotelResponse> {
+	try {
+
+		// If Hotel doesn't exists
+		const existingHotels = await db.hotels.findMany();
+
+		if (existingHotels.length == 0) {
+			return {
+				returncode: 307,
+				message: "Hotel doesn't Exists, please add one",
+				output: []
+			}
+		}
+
+		existingHotels.forEach(hotel => {
+			hotel.HotelLogo = hotel.HotelLogo?.toString('base64');
+		});
+
+		return {
+			returncode: 200,
+			message: "Hotels Fetched",
+			output: existingHotels
+		};
+
+	} catch (error: any) {
+		return {
+			returncode: 500,
+			message: error.message,
+			output: []
+		};
+	}
+}

@@ -1,14 +1,17 @@
-import { update_password } from "./logic";
+import { update_hotel } from "./logic";
 
 export async function PUT(request: Request) {
 	try {
 		const data = await request.json();
-		const result = await update_password(data);
+		const result = await update_hotel(data);
 		return Response.json(
 			{
 				returncode: result.returncode,
 				message: result.message,
 				output: result.output
+			},
+			{
+				status: result.returncode
 			}
 		);
 	}
@@ -16,8 +19,11 @@ export async function PUT(request: Request) {
 		return Response.json(
 			{
 				returncode: 500,
-				message: `Error Updating User's Password: ${error.message}`,
+				message: `Error Updating Hotel: ${error.message}`,
 				output: []
+			},
+			{
+				status: 500
 			}
 		);
 	}

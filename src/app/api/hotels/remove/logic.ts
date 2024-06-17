@@ -1,13 +1,13 @@
 import db from '../../../../lib/db';
-import { UserResponse } from '@/types/UserResponse';
+import { HotelResponse } from '@/types/HotelResponse';
 
-export async function delete_user(data: any): Promise<UserResponse> {
+export async function delete_hotel(data: any): Promise<HotelResponse> {
 	try {
 
-		const user_id: string | null = data['user_id'];
+		const hotel_id: string | null = data['hotel_id'];
 
 		// Default Invalid Checker
-		if (user_id == null) {
+		if (hotel_id == null) {
 			return {
 				returncode: 400,
 				message: 'Invalid Input',
@@ -16,32 +16,31 @@ export async function delete_user(data: any): Promise<UserResponse> {
 
 		}
 
-
-		// If user doesn't exists
-		const existingUser = await db.user.findMany({
+		// If Hotel doesn't exists
+		const existingHotel = await db.hotels.findMany({
 			where: {
-				id: { equals: user_id }
+				id: { equals: hotel_id }
 			}
 		});
 
-		if (existingUser.length == 0) {
+		if (existingHotel.length == 0) {
 			return {
 				returncode: 307,
-				message: "User doesn't Exists, please register",
+				message: "Hotel doesn't Exists, please register",
 				output: []
 			}
 		}
 
 		// Deleting the User
-		await db.user.delete({
+		await db.hotels.delete({
 			where: {
-				id: user_id,
+				id: hotel_id,
 			},
 		});
 
 		return {
 			returncode: 200,
-			message: "User Deleted",
+			message: "Hotel Deleted",
 			output: []
 		};
 

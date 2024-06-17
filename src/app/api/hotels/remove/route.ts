@@ -1,14 +1,17 @@
-import { delete_user } from "./logic";
+import { delete_hotel } from "./logic";
 
 export async function DELETE(request: Request) {
 	try {
 		const data = await request.json();
-		const result = await delete_user(data);
+		const result = await delete_hotel(data);
 		return Response.json(
 			{
 				returncode: result.returncode,
 				message: result.message,
 				output: result.output
+			},
+			{
+				status: result.returncode
 			}
 		);
 	}
@@ -16,8 +19,11 @@ export async function DELETE(request: Request) {
 		return Response.json(
 			{
 				returncode: 500,
-				message: `Error Registering user: ${error.message}`,
+				message: `Error Deleting Hotel: ${error.message}`,
 				output: []
+			},
+			{
+				status: 500
 			}
 		);
 	}
