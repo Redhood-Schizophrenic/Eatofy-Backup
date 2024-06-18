@@ -1,4 +1,4 @@
-import db from '../../../../lib/db';
+import db from '@/lib/db';
 import { HotelResponse } from '@/types/HotelResponse';
 
 export async function delete_hotel(data: any): Promise<HotelResponse> {

@@ -1,4 +1,4 @@
-import db from '../../../../lib/db';
+import db from '@/lib/db';
 import { HotelResponse } from '@/types/HotelResponse';
 import Hotels from '@/model/Hotels';
 import { hashing } from '@/lib/utils/hashing';

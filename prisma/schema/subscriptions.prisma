@@ -1,0 +1,25 @@
+// subscriptions.prisma
+
+model Subscriptions {
+  id                  String             @id @default(uuid())
+  SubscriptionName    String
+  Price               Float
+  Validity            Int
+  HotelSubscription Hotel_Subscription[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Hotel_Subscription {
+  id              String           @id @default(uuid())
+  HotelId         String
+  SubscriptionId  String
+  isValid         Boolean
+  StartDate       DateTime
+  EndDate         DateTime
+  Hotel           Hotels           @relation(fields: [HotelId], references: [id])
+  Subscription    Subscriptions     @relation(fields: [SubscriptionId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+

@@ -1,4 +1,4 @@
-import db from '../../../../lib/db';
+import db from '@/lib/db';
 import { UserResponse } from '@/types/UserResponse';
 import { forgot_password } from '@/schemas/Authentication/forgot_password';
 import { ZodError } from 'zod';

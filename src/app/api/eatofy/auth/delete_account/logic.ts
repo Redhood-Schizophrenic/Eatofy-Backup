@@ -1,4 +1,4 @@
-import db from '../../../../lib/db';
+import db from '@/lib/db';
 import { UserResponse } from '@/types/UserResponse';
 
 export async function delete_user(data: any): Promise<UserResponse> {

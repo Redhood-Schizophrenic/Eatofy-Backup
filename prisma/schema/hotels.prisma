@@ -14,7 +14,8 @@ model Hotels {
   Website        String
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
-  HotelSchedules Hotel_Schedule[] // Optional: if you need to access schedules from Hotels, otherwise ignore in queries
+  HotelSchedules Hotel_Schedule[] 
+  HotelSubscriptions Hotel_Subscription[]
 }
 
 model Hotel_Schedule {

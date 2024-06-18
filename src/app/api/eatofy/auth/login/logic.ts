@@ -1,18 +1,16 @@
-import db from '../../../../lib/db';
+import db from '@/lib/db';
 import { UserResponse } from '@/types/UserResponse';
-import { register } from '@/schemas/Authentication/register';
+import { login } from '@/schemas/Authentication/login';
 import { ZodError } from 'zod';
-import User from '@/model/User';
 
-export async function register_user(data: any): Promise<UserResponse> {
+export async function login_user(data: any): Promise<UserResponse> {
 	try {
 
-		const username: string | null = data['username'];
 		const email: string | null = data['email'];
 		const password: string | null = data['password'];
-		
+
 		// Default Invalid Checker
-		if (username == null || email == null || password == null) {
+		if (email == null || password == null) {
 			return {
 				returncode: 400,
 				message: 'Invalid Input',
@@ -23,12 +21,12 @@ export async function register_user(data: any): Promise<UserResponse> {
 
 		//Zod Input Checker
 		try {
-			var UserSchema = register.parse(data);
+			var UserSchema = login.parse(data);
 			UserSchema
 		} catch (error: ZodError | any) {
 			try {
 				const err = JSON.parse(error.message);
-				let error_message: any = '';
+				let error_message = '';
 				await (err as any).forEach((obj: any) => {
 					error_message = obj.message;
 				});
@@ -50,50 +48,47 @@ export async function register_user(data: any): Promise<UserResponse> {
 			}
 		}
 
-		// Existing User
-		const existingUsername = await db.user.findMany({
-			where: {
-				Username: { equals: username }
-			}
-		});
-
-		if (existingUsername.length != 0) {
-			return {
-				returncode: 307,
-				message: 'Username Exists, please login',
-				output: []
-			}
-		}
-
+		// If User doesn't exists
 		const existingEmail = await db.user.findMany({
 			where: {
 				Email: { equals: email }
 			}
 		});
 
-		if (existingEmail.length != 0) {
+		if (existingEmail.length == 0) {
 			return {
 				returncode: 307,
-				message: 'User Email Exists, please login',
+				message: "User Email doesn't Exists, please register",
 				output: []
 			}
 		}
 
-		// Inserting the User
-		const result: User = await db.user.create({
-			data: {
-				Username: username,
-				Email: email,
-				Password: password
-			},
+		//Update Password
+		let result;
+		existingEmail.forEach((user: any) => {
+			if (user.Password == password) {
+
+				result = {
+					returncode: 200,
+					message: "User Logged In",
+					output: existingEmail
+				};
+
+				return;
+			}
 		});
 
-		db.$disconnect();
+		db.$disconnect()
+
+		if(result!=undefined)
+		{
+			return result;
+		}
 
 		return {
-			returncode: 200,
-			message: "User Registered",
-			output: result
+			returncode: 400,
+			message: "Password Doesn't Match",
+			output: []
 		};
 
 	} catch (error: any) {
