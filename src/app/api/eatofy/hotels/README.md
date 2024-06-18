@@ -6,7 +6,7 @@
 ### Hotels Module
 
 ###### 1. Add Hotel
-http://localhost:3000/api/hotels/add
+http://localhost:3000/api/eatofy/hotels/operations/add
 `POST(formData())`
 ```json
 {
@@ -34,7 +34,7 @@ http://localhost:3000/api/hotels/add
 ```
 
 ###### 2. Fetch
-http://localhost:3000/api/hotels/fetch
+http://localhost:3000/api/eatofy/hotels/operations/fetch
 `POST | GET`
 ```json
 {
@@ -43,7 +43,7 @@ http://localhost:3000/api/hotels/fetch
 ```
 
 ###### 3.1 Update Details
-http://localhost:3000/api/hotels/update/details
+http://localhost:3000/api/eatofy/hotels/operations/update/details
 `PUT`
 ```json
 {
@@ -70,7 +70,7 @@ http://localhost:3000/api/hotels/update/details
 ```
 
 ###### 3.2 Update Profile
-http://localhost:3000/api/hotels/fetch
+http://localhost:3000/api/eatofy/hotels/operations/fetch
 `PUT(formData())`
 ```json
 {
@@ -79,7 +79,7 @@ http://localhost:3000/api/hotels/fetch
 ```
 
 ###### 4. Account Delete
-http://localhost:3000/api/hotels/remove
+http://localhost:3000/api/eatofy/hotels/operations/remove
 `DELETE`
 ```json
 {
@@ -92,7 +92,7 @@ http://localhost:3000/api/hotels/remove
 ### Hotel's Schedule Module
 
 ###### 1. Add Hotel's Schedule
-http://localhost:3000/api/hotels/schedules/add
+http://localhost:3000/api/eatofy/hotels/schedules/add
 `POST`
 ```json
 {
@@ -104,6 +104,7 @@ http://localhost:3000/api/hotels/schedules/add
 ```
 
 ###### 2. Fetch
+http://localhost:3000/api/eatofy/hotels/schedules/fetch
 `POST`
 ```json
 {
@@ -111,7 +112,7 @@ http://localhost:3000/api/hotels/schedules/add
 }
 ```
 ###### 3. Schedule Delete
-http://localhost:3000/api/hotels/remove
+http://localhost:3000/api/eatofy/hotels/schedules/remove
 `DELETE`
 ```json
 {

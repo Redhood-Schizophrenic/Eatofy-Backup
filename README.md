@@ -6,18 +6,34 @@ Inside of your api, you'll see the following folders and files:
 /
 ├── api/
 │   └── eatofy/
-│       └── register/
-│       └── login/
-│       └── forgot_password/
-│       └── delete_account/
-│   └── hotels/
-│       └── add/
-│       └── fetch/
-│       └── update/
-│           └── details/
-│           └── profile/
-│       └── remove/
-│       └── schedules/
+│       └── dashboard/
+│       └── auth/
+│          └── register/
+│           └── login/
+│           └── forgot_password/
+│           └── delete_account/
+│       └── hotels/
+│           └── operations/
+│               └── add/
+│               └── fetch/
+│               └── update/
+│                   └── details/
+│                   └── profile/
+│               └── remove/
+│           └── schedules/
+│               └── add/
+│               └── fetch/
+│               └── remove/
+│       └── hotel_subscription/
+│           └── add/
+│           └── fetch/
+│           └── update/
+│           └── remove/
+│       └── subscription/
+│           └── add/
+│           └── fetch/
+│           └── update/
+│           └── remove/
 ```
 
 Inside of your project, you'll see the following folders and files:

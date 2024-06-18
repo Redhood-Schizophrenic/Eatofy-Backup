@@ -6,7 +6,7 @@
 ### Eatofy Authentication
 
 ###### 1. Login
-http://localhost:3000/api/eatofy/login
+http://localhost:3000/api/eatofy/auth/login
 `POST`
 ```json
 {
@@ -16,7 +16,7 @@ http://localhost:3000/api/eatofy/login
 ```
 
 ###### 2. Register (*To be used one time only*)
-http://localhost:3000/api/eatofy/register
+http://localhost:3000/api/eatofy/auth/register
 `POST`
 ```json
 {
@@ -27,7 +27,7 @@ http://localhost:3000/api/eatofy/register
 ```
 
 ###### 3. Forgot Password 
-http://localhost:3000/api/eatofy/forgot_password
+http://localhost:3000/api/eatofy/auth/forgot_password
 `PUT`
 ```json
 {
@@ -38,7 +38,7 @@ http://localhost:3000/api/eatofy/forgot_password
 ```
 
 ###### 4. Account Delete
-http://localhost:3000/api/eatofy/delete_account
+http://localhost:3000/api/eatofy/auth/delete_account
 `DELETE`
 ```json
 {
