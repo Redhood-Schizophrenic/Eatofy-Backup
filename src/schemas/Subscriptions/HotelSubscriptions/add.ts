@@ -17,6 +17,6 @@ export const hotel_subscription_add = z.object({
 	hotel_id: hotelIdValidation,
 	subscription_id: subscriptionIdValidation,
 	is_valid: Validation,
-	start_date: DateValidation,
-	end_date: DateValidation,
+	start: DateValidation,
+	end: DateValidation,
 })

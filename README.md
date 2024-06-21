@@ -34,6 +34,12 @@ Inside of your api, you'll see the following folders and files:
 │           └── fetch/
 │           └── update/
 │           └── remove/
+│
+│   └── hotel/
+│       └── auth/
+│           └── login/
+│       └── tables/
+
 ```
 
 Inside of your project, you'll see the following folders and files:

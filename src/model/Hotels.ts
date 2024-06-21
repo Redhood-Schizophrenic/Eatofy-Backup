@@ -5,7 +5,6 @@ export default interface Hotels{
 	SaltPassword: String,
 	Address: String,
 	Speciality: String[],
-	Ratings: Number,
 	HotelLogo: File,
 	Contacts: String[],
 	Website: string,

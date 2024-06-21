@@ -2,7 +2,7 @@ import db from '@/lib/db';
 import { hotel_subscription_add } from '@/schemas/Subscriptions/HotelSubscriptions/add';
 import { HotelSubscriptionResponse } from '@/types/HotelSubscriptionResponse';
 import HotelSubscription from '@/model/HotelSubscription';
-import { ZodError } from 'zod';
+import { SafeParseReturnType, ZodError } from 'zod';
 
 export async function add_hotel_subscription(data: any): Promise<HotelSubscriptionResponse> {
 	try {
@@ -11,10 +11,12 @@ export async function add_hotel_subscription(data: any): Promise<HotelSubscripti
 		const subscription_id: string | null = data['subscription_id'];
 		const is_valid: boolean | null = data['is_valid'];
 		const start_date: string | null = data['start_date'];
+		const start_time: string | null = data['start_time']
 		const end_date: string | null = data['end_date'];
+		const end_time: string | null = data['end_time'];
 
 		// Default Invalid Checker
-		if (hotel_id == null || subscription_id == null || is_valid == null || start_date == null || end_date == null ) {
+		if (hotel_id == null || subscription_id == null || is_valid == null || start_date == null || end_date == null) {
 			return {
 				returncode: 400,
 				message: 'Invalid Input',
@@ -22,6 +24,11 @@ export async function add_hotel_subscription(data: any): Promise<HotelSubscripti
 			}
 
 		}
+
+		const start: string = `${start_date}T${start_time}Z`;
+		const end: string = `${end_date}T${end_time}Z`;
+		data['start'] = start;
+		data['end'] = end;
 
 		//Zod Input Checker
 		try {
@@ -58,8 +65,8 @@ export async function add_hotel_subscription(data: any): Promise<HotelSubscripti
 				HotelId: hotel_id,
 				SubscriptionId: subscription_id,
 				isValid: is_valid,
-				StartDate: start_date,
-				EndDate: end_date
+				StartDate: start,
+				EndDate: end
 			},
 		});
 

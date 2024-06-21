@@ -1,0 +1,26 @@
+//table.prisma
+
+model Tables {
+  id                  String            @id @default(uuid())
+  TableName           String
+  TableDescription    String
+  CategoryId          String            // Foreign key field
+  Category            TableCategory     @relation(fields: [CategoryId], references: [id])
+  HotelId             String            // Foreign key field
+  Hotel               Hotels            @relation(fields: [HotelId], references: [id])
+  Status              String
+  PersonsOccupiable   Decimal
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+}
+
+model TableCategory{ 
+  id              String            @id @default(uuid())
+  CategoryName    String         
+  HotelId         String            // Foreign key field
+  Hotel           Hotels            @relation(fields: [HotelId], references: [id])
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  //Parent to Child Relations
+  Tables          Tables[]
+}

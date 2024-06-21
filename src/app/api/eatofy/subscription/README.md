@@ -7,7 +7,7 @@
 ### Subscription Module
 
 ###### 1. Add
-http://localhost:3000/api/eatofy/hotel_subscription/add
+http://localhost:3000/api/eatofy/subscription/add
 `POST`
 ```json
 {
@@ -18,7 +18,7 @@ http://localhost:3000/api/eatofy/hotel_subscription/add
 ```
 
 ###### 2. Fetch
-http://localhost:3000/api/eatofy/hotel_subscription/fetch
+http://localhost:3000/api/eatofy/subscription/fetch
 `POST | GET`
 ```json
 {
@@ -27,7 +27,7 @@ http://localhost:3000/api/eatofy/hotel_subscription/fetch
 ```
 
 ###### 3. Update
-http://localhost:3000/api/eatofy/hotel_subscription/update
+http://localhost:3000/api/eatofy/subscription/update
 `PUT`
 ```json
 {
@@ -39,7 +39,7 @@ http://localhost:3000/api/eatofy/hotel_subscription/update
 ```
 
 ###### 4. Remove
-http://localhost:3000/api/eatofy/hotel_subscription/remove
+http://localhost:3000/api/eatofy/subscription/remove
 `DELETE`
 ```json
 {

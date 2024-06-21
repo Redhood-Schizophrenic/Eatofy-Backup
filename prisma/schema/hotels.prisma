@@ -1,21 +1,23 @@
 //hotels.prisma
 
 model Hotels {
-  id             String           @id @default(uuid())
-  HotelName      String           @unique
-  Email          String           @unique
-  HashedPassword String
-  SaltPassword   String
-  Address        String
-  Speciality     String[]
-  Ratings        Float
-  HotelLogo      Bytes
-  Contacts       String[]
-  Website        String
-  createdAt      DateTime         @default(now())
-  updatedAt      DateTime         @updatedAt
-  HotelSchedules Hotel_Schedule[] 
-  HotelSubscriptions Hotel_Subscription[]
+  id                    String           @id @default(uuid())
+  HotelName             String           @unique
+  Email                 String           @unique
+  HashedPassword        String
+  SaltPassword          String
+  Address               String
+  Speciality            String[]
+  HotelLogo             Bytes
+  Contacts              String[]
+  Website               String
+  createdAt             DateTime         @default(now())
+  updatedAt             DateTime         @updatedAt
+  // Parent to Child Relations
+  HotelSchedules        Hotel_Schedule[] 
+  HotelSubscriptions    Hotel_Subscription[]
+  Tables                Tables[]
+  TableCategory         TableCategory[]
 }
 
 model Hotel_Schedule {
