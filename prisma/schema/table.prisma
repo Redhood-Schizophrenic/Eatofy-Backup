@@ -12,6 +12,8 @@ model Tables {
   PersonsOccupiable   Decimal
   createdAt           DateTime          @default(now())
   updatedAt           DateTime          @updatedAt
+  // Parent-Child Relation
+  Reservation         TableReservation[]
 }
 
 model TableCategory{ 
@@ -23,4 +25,17 @@ model TableCategory{
   updatedAt       DateTime          @updatedAt
   //Parent to Child Relations
   Tables          Tables[]
+}
+
+model TableReservation{
+  id                  String            @id @default(uuid())
+  Occasion            String?
+  Date                String
+  Time                String
+  CustomerId          String            // Foreign key field
+  Customer            Customers         @relation(fields: [CustomerId], references: [id])
+  TableId             String            // Foreign key field
+  Table               Tables            @relation(fields: [TableId], references: [id])
+  HotelId             String            // Foreign key field
+  Hotel               Hotels            @relation(fields: [HotelId], references: [id])
 }

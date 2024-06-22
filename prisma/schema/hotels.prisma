@@ -18,6 +18,8 @@ model Hotels {
   HotelSubscriptions    Hotel_Subscription[]
   Tables                Tables[]
   TableCategory         TableCategory[]
+  Customers             Customers[]
+  Reservations          TableReservation[]
 }
 
 model Hotel_Schedule {

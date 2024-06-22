@@ -1,0 +1,12 @@
+//crm.prisma
+
+model Customers{
+  id                  String            @id @default(uuid())
+  CustomerName        String   
+  Contact             String?
+  Email               String?
+  HotelId             String            // Foreign key field
+  Hotel               Hotels            @relation(fields: [HotelId], references: [id])
+  //Parent-Child Relation
+  Reservation         TableReservation[]
+}

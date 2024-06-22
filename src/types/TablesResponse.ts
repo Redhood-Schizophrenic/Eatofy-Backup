@@ -1,5 +1,6 @@
 import { Tables } from "@prisma/client";
 import { TableCategory } from "@prisma/client";
+import { TableReservation } from "@prisma/client";
 
 export interface TablesResponse {	
 	returncode: number;
@@ -14,3 +15,8 @@ export interface TableCategoryResponse {
 
 }
 
+export interface TableReservationResponse {
+	returncode: number;
+	message: string;
+	output: Array<TableReservation> | Array<void> | TableReservation[]
+}

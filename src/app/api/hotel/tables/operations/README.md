@@ -3,7 +3,7 @@
 
 ----------------------------------------------------------------------------------
 
-###  Module
+### Table Management Module
 
 ###### 1. Add
 http://localhost:3000/api/hotel/tables/operations/add
