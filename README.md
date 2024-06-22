@@ -38,8 +38,29 @@ Inside of your api, you'll see the following folders and files:
 │   └── hotel/
 │       └── auth/
 │           └── login/
+│       └── customer/
+│           └── add/
+│               └── all/
+│               └── contact/
+│               └── email/
+│               └── name/
+│           └── fetch/
+│               └── all/
+│               └── single/
+│           └── update/
+│           └── remove/
 │       └── tables/
-
+│           └── category/
+│               └── add/
+│               └── fetch/
+│               └── remove/
+│           └── operations/
+│               └── add/
+│               └── fetch/
+│                   └── all/
+│                   └── one/
+│               └── update/
+│               └── remove/
 ```
 
 Inside of your project, you'll see the following folders and files:
@@ -52,6 +73,7 @@ Inside of your project, you'll see the following folders and files:
 │   └── lib/
 │       └── Database Connector
 │       └── utils/
+│           └── Session
 │           └── Password Hashing
 │   └── model/
 │       └── Interfaces
