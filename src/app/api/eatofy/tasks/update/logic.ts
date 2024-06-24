@@ -1,7 +1,7 @@
 import db from '@/lib/db';
-import { HotelTasksResponse } from '@/types/HotelTaskResponse';
+import { Tasks_Response } from '@/types/TasksResponse';
 
-export async function update_hotel_task(data: any): Promise<HotelTasksResponse> {
+export async function update_task(data: any): Promise<Tasks_Response> {
 	try {
 
 		const task_id: string | null = data['task_id'];
@@ -18,21 +18,21 @@ export async function update_hotel_task(data: any): Promise<HotelTasksResponse> 
 		}
 
 		// Check whether Task exists
-		const existingHotelTask = await db.hotel_Tasks.findMany({
+		const existingTask = await db.tasks.findMany({
 			where: {
 				id: { equals: task_id }
 			}
 		});
 
-		if (existingHotelTask.length == 0) {
+		if (existingTask.length == 0) {
 			return {
 				returncode: 307,
-				message: "Hotel's Task doesn't Exists.",
+				message: "Task doesn't Exists.",
 				output: []
 			}
 		}
 
-		const hotel_task_updated: any = await db.hotel_Tasks.update({
+		const task_updated: any = await db.tasks.update({
 			where: {
 				id: task_id
 			},
@@ -45,8 +45,8 @@ export async function update_hotel_task(data: any): Promise<HotelTasksResponse> 
 
 		return {
 			returncode: 200,
-			message: "Hotel's Task Updated",
-			output: hotel_task_updated
+			message: "Task Updated",
+			output: task_updated
 		};
 
 	} catch (error: any) {

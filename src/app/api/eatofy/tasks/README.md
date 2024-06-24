@@ -3,13 +3,14 @@
 
 ----------------------------------------------------------------------------------
 
-### Tasks Module
+### Hotel's Tasks Module
 
 ###### 1. Add
-http://localhost:3000/api/eatofy/tasks/add
+http://localhost:3000/api/eatofy/hotels/tasks/add
 `POST`
 ```json
 {
+    "hotel_id": "746b236d-ff30-43fc-8ca6-643dedac5a5c",
     "task": "Subscription Payment Due",
     "date": "YYYY-MM-DD",
     "status": "Pending"
@@ -17,11 +18,11 @@ http://localhost:3000/api/eatofy/tasks/add
 ```
 
 ###### 2. Fetch
-http://localhost:3000/api/eatofy/tasks/fetch
+http://localhost:3000/api/eatofy/hotels/tasks/fetch
 `GET`
 
 ###### 3. Update
-http://localhost:3000/api/eatofy/tasks/update
+http://localhost:3000/api/eatofy/hotels/tasks/update
 `PUT`
 ```json
 {
@@ -31,7 +32,7 @@ http://localhost:3000/api/eatofy/tasks/update
 ```
 
 ###### 4. Remove
-http://localhost:3000/api/eatofy/tasks/remove
+http://localhost:3000/api/eatofy/hotels/tasks/remove
 `DELETE`
 ```json
 {
