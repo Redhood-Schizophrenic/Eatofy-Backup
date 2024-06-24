@@ -1,9 +1,9 @@
-import { add_hotel_subscription } from "./logic";
+import { add_hotel_tasks } from "./logic";
 
 export async function POST(request: Request) {
 	try {
 		const data = await request.json();
-		const result = await add_hotel_subscription(data);
+		const result = await add_hotel_tasks(data);
 		return Response.json(
 			{
 				returncode: result.returncode,
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
 		return Response.json(
 			{
 				returncode: 500,
-				message: `Error Adding Hotel Subscriptions: ${error.message}`,
+				message: `Error Adding Hotel Task: ${error.message}`,
 				output: []
 			},
 			{

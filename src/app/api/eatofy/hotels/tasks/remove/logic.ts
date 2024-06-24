@@ -1,13 +1,13 @@
 import db from '@/lib/db';
-import { HotelSubscriptionResponse } from '@/types/HotelSubscriptionResponse';
+import { HotelTasksResponse } from '@/types/HotelTaskResponse';
 
-export async function delete_hotel_subscription(data: any): Promise<HotelSubscriptionResponse> {
+export async function delete_hotel_task(data: any): Promise<HotelTasksResponse> {
 	try {
 
-		const hotel_subscription_id: string | null = data['hotel_subscription_id'];
+		const task_id: string | null = data['task_id'];
 
 		// Default Invalid Checker
-		if (hotel_subscription_id == null) {
+		if (task_id == null) {
 			return {
 				returncode: 400,
 				message: 'Invalid Input',
@@ -17,24 +17,24 @@ export async function delete_hotel_subscription(data: any): Promise<HotelSubscri
 		}
 
 		// If Subscription doesn't exists
-		const existingSubscription = await db.hotel_Subscription.findMany({
+		const existingTask = await db.hotel_Tasks.findMany({
 			where: {
-				id: { equals: hotel_subscription_id }
+				id: { equals: task_id }
 			}
 		});
 
-		if (existingSubscription.length == 0) {
+		if (existingTask.length == 0) {
 			return {
 				returncode: 307,
-				message: "Subscription doesn't Exists, please register",
+				message: "Task doesn't Exists.",
 				output: []
 			}
 		}
 
-		// Deleting the Subscription
-		await db.hotel_Subscription.delete({
+		// Deleting the Task
+		await db.hotel_Tasks.delete({
 			where: {
-				id: hotel_subscription_id,
+				id: task_id,
 			},
 		});
 
@@ -42,7 +42,7 @@ export async function delete_hotel_subscription(data: any): Promise<HotelSubscri
 
 		return {
 			returncode: 200,
-			message: "Hotel's Subscription Deleted",
+			message: "Hotel's Task Deleted",
 			output: []
 		};
 

@@ -1,9 +1,9 @@
-import { delete_hotel_subscription } from "./logic";
+import { delete_hotel_task } from "./logic";
 
 export async function DELETE(request: Request) {
 	try {
 		const data = await request.json();
-		const result = await delete_hotel_subscription(data);
+		const result = await delete_hotel_task(data);
 		return Response.json(
 			{
 				returncode: result.returncode,
@@ -19,7 +19,7 @@ export async function DELETE(request: Request) {
 		return Response.json(
 			{
 				returncode: 500,
-				message: `Error Deleting Hotel's Subscription: ${error.message}`,
+				message: `Error Deleting Hotel's Task: ${error.message}`,
 				output: []
 			},
 			{

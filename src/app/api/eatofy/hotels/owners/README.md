@@ -3,7 +3,7 @@
 
 ----------------------------------------------------------------------------------
 
-### Hotel's Subscription Module
+### Hotel's Owner Module
 
 ###### 1. Add
 http://localhost:3000/api/eatofy/hotels/owners/add

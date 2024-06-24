@@ -1,37 +1,8 @@
-import { fetch_hotel_subscription, fetch_hotel_subscriptions } from "./logic";
-
-export async function POST(request: Request) {
-	try {
-		const data = await request.json();
-		const result = await fetch_hotel_subscription(data);
-		return Response.json(
-			{
-				returncode: result.returncode,
-				message: result.message,
-				output: result.output
-			},
-			{
-				status: result.returncode
-			}
-		);
-	}
-	catch (error: any) {
-		return Response.json(
-			{
-				returncode: 500,
-				message: `Error Fetching Hotel Subscriptions: ${error.message}`,
-				output: []
-			},
-			{
-				status: 500
-			}
-		);
-	}
-}
+import { fetch_hotel_tasks } from "./logic";
 
 export async function GET() {
 	try {
-		const result = await fetch_hotel_subscriptions();
+		const result = await fetch_hotel_tasks();
 		return Response.json(
 			{
 				returncode: result.returncode,
@@ -47,7 +18,7 @@ export async function GET() {
 		return Response.json(
 			{
 				returncode: 500,
-				message: `Error Fetching Hotel Subscriptions: ${error.message}`,
+				message: `Error Fetching Hotel Tasks: ${error.message}`,
 				output: []
 			},
 			{

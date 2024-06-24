@@ -4,7 +4,7 @@ import { HotelTasksResponse } from '@/types/HotelTaskResponse';
 import { TaskSchema } from '@/schemas/Hotels/Tasks/add';
 import { ZodError } from 'zod';
 
-export async function add_hotel_subscription(data: any): Promise<HotelTasksResponse> {
+export async function add_hotel_tasks(data: any): Promise<HotelTasksResponse> {
 	try {
 
 		const hotel_id: string | null = data['hotel_id'];
@@ -50,8 +50,8 @@ export async function add_hotel_subscription(data: any): Promise<HotelTasksRespo
 			}
 		}
 
-		// Inserting the Subscription Data
-		const result: Hotel_Tasks[] = await db.hotel_Tasks.create({
+		// Inserting the Tasks
+		const result: Hotel_Tasks[] | any = await db.hotel_Tasks.create({
 			data: {
 				HotelId: hotel_id,
 				Task: task,
@@ -64,7 +64,7 @@ export async function add_hotel_subscription(data: any): Promise<HotelTasksRespo
 
 		return {
 			returncode: 200,
-			message: "Subscription Added",
+			message: "Task Added",
 			output: result
 		};
 

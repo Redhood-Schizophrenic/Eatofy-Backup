@@ -1,9 +1,9 @@
-import { update_hotel_subscription } from "./logic";
+import { update_hotel_task } from "./logic";
 
 export async function PUT(request: Request) {
 	try {
 		const data = await request.json();
-		const result = await update_hotel_subscription(data);
+		const result = await update_hotel_task(data);
 		return Response.json(
 			{
 				returncode: result.returncode,
@@ -19,7 +19,7 @@ export async function PUT(request: Request) {
 		return Response.json(
 			{
 				returncode: 500,
-				message: `Error Updating Hotel's Subscription: ${error.message}`,
+				message: `Error Updating Hotel's Task: ${error.message}`,
 				output: []
 			},
 			{
