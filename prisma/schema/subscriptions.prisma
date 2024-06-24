@@ -15,8 +15,10 @@ model Hotel_Subscription {
   HotelId         String
   SubscriptionId  String
   isValid         Boolean
-  StartDate       DateTime
-  EndDate         DateTime
+  StartDate       String
+  EndDate         String
+  // StartDate       DateTime
+  // EndDate         DateTime
   Hotel           Hotels           @relation(fields: [HotelId], references: [id])
   Subscription    Subscriptions     @relation(fields: [SubscriptionId], references: [id])
   createdAt DateTime @default(now())

@@ -1,0 +1,16 @@
+//suppliers.prisma
+
+model Suppliers{
+  id              String           @id @default(uuid())
+  SupplierName    String
+  Contact         String
+  Email           String
+  GSTIN           String
+  Address         String
+  HotelId         String
+  Hotel           Hotels           @relation(fields: [HotelId], references: [id])
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  //Parent-Child Relationship
+  Stock           PurchasedStock[]
+}

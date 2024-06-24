@@ -28,7 +28,8 @@ http://localhost:3000/api/eatofy/hotels/operations/add
         "1234567890",
         "1234567891"
     ],
-    "website":"https://www.google.com",
+    "website":"https://www.google.com / (optional)",
+    "fssai_code":"hrhjcfjoich12232",
     "logo": File
 }
 ```

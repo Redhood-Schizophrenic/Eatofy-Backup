@@ -10,7 +10,8 @@ model Hotels {
   Speciality            String[]
   HotelLogo             Bytes
   Contacts              String[]
-  Website               String
+  Website               String?
+  FSSAICode             String
   createdAt             DateTime         @default(now())
   updatedAt             DateTime         @updatedAt
   // Parent to Child Relations
@@ -20,6 +21,35 @@ model Hotels {
   TableCategory         TableCategory[]
   Customers             Customers[]
   Reservations          TableReservation[]
+  Supplier              Suppliers[]
+  ItemCategory          ItemCategories[]
+  Item                  Items[]
+  Stock                 PurchasedStock[]
+  Owners                Hotel_Owners[]
+  Tasks                 Hotel_Tasks[]
+}
+
+model Hotel_Owners {
+  id                    String            @id @default(uuid())
+  OwnerName             String
+  Email                 String
+  HashedPassword        String
+  SaltPassword          String
+  HotelId               String            // Foreign key field
+  Hotel                 Hotels            @relation(fields: [HotelId], references: [id])
+  createdAt             DateTime          @default(now())
+  updatedAt             DateTime          @updatedAt
+}
+
+model Hotel_Tasks {
+  id                    String            @id @default(uuid())
+  Task                  String  
+  CompletionDate        String
+  Status                String
+  HotelId               String            // Foreign key field
+  Hotel                 Hotels            @relation(fields: [HotelId], references: [id])
+  createdAt             DateTime          @default(now())
+  updatedAt             DateTime          @updatedAt
 }
 
 model Hotel_Schedule {

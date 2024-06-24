@@ -8,4 +8,5 @@ export default interface Hotels{
 	HotelLogo: File,
 	Contacts: String[],
 	Website: string,
+	FSSAICode: string
 }

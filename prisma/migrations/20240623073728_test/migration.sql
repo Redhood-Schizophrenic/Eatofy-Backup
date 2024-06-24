@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Hotel_Subscription" ALTER COLUMN "StartDate" SET DATA TYPE TEXT,
+ALTER COLUMN "EndDate" SET DATA TYPE TEXT;

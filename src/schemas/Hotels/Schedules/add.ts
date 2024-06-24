@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const idValidator = z
-	.string()
+	.string();
 
 const dayValidation = z
 	.string()
@@ -17,4 +17,4 @@ export const schedule_add = z.object({
 	day: dayValidation,
 	open_time: timeValidator,
 	close_time: timeValidator
-})
+});

@@ -13,10 +13,11 @@ export async function add_hotel(data: any): Promise<HotelResponse> {
 		const speciality: string | null = data.get('speciality');
 		const contacts: string | null = data.get('contacts');
 		const website: string | null = data.get('website');
+		const fssai_code: string | null = data.get('fssai_code');
 		const logo: File | null = data.get('logo');
 
 		// Default Invalid Checker
-		if (hotel_name == null || email == null || password == null || address == null || speciality == null || contacts == null || website == null || logo == null) {
+		if (hotel_name == null || email == null || password == null || address == null || speciality == null || contacts == null || website == null || logo == null || fssai_code == null) {
 			return {
 				returncode: 400,
 				message: 'Invalid Input',
@@ -42,7 +43,8 @@ export async function add_hotel(data: any): Promise<HotelResponse> {
 				Speciality: speciality.split(',').map((s: any) => s.trim()),
 				HotelLogo: buffer,
 				Contacts: contacts.split(',').map((s: any) => s.trim()),
-				Website: website
+				Website: website,
+				FSSAICode: fssai_code
 			},
 		});
 

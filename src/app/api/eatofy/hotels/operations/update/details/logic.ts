@@ -13,15 +13,15 @@ export async function update_hotel(data: any): Promise<HotelResponse> {
 		const ratings: string | null = data['ratings'];
 		const contacts: string[] | null = data['contacts'];
 		const website: string | null = data['website'];
+		const fssai_code: string | null = data.get('fssai_code');
 
 		// Default Invalid Checker
-		if (hotel_name == null || email == null || password == null || address == null || speciality == null || ratings == null || contacts == null || website == null) {
+		if (hotel_name == null || email == null || password == null || address == null || speciality == null || ratings == null || contacts == null || website == null || fssai_code == null) {
 			return {
 				returncode: 400,
 				message: 'Invalid Input',
 				output: []
 			}
-
 		}
 
 		const HashedPassword = await hashing(password);
@@ -53,11 +53,10 @@ export async function update_hotel(data: any): Promise<HotelResponse> {
 				Address: address,
 				Speciality: speciality,
 				//Speciality: speciality.split(',').map((s: any) => s.trim()),
-				Ratings: parseFloat(ratings),
 				Contacts: contacts,
 				//Contacts: contacts.split(',').map((s: any) => s.trim()),
-				Website: website
-
+				Website: website,
+				FSSAICode: fssai_code
 			},
 		});
 

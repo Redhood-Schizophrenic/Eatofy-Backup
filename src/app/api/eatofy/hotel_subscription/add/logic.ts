@@ -25,12 +25,12 @@ export async function add_hotel_subscription(data: any): Promise<HotelSubscripti
 
 		}
 
-		const start: string = `${start_date}T${start_time}Z`;
-		const end: string = `${end_date}T${end_time}Z`;
+		const start: string = `${start_date}T${start_time}:00Z`;
+		const end: string = `${end_date}T${end_time}:00Z`;
 		data['start'] = start;
 		data['end'] = end;
 
-		//Zod Input Checker
+		// Zod Input Checker
 		try {
 			var Schema = hotel_subscription_add.parse(data);
 			Schema

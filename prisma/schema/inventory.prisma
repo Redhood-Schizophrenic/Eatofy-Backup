@@ -1,0 +1,67 @@
+//inventory.prisma
+
+model ItemCategories {
+  id              String           @id @default(uuid())
+  CategoryName    String
+  Description     String
+  HotelId         String
+  Hotel           Hotels           @relation(fields: [HotelId], references: [id])
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  // Parent Child Relation
+  Item            Items[]
+}
+
+model Items {
+  id              String            @id @default(uuid())
+  StockName       String
+  GSTRate         String
+  Type            String
+  HotelId         String
+  Hotel           Hotels           @relation(fields: [HotelId], references: [id])
+  CategoryId      String
+  Category        ItemCategories    @relation(fields: [CategoryId], references: [id])
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  //Parent Child Relation
+  Stock           PurchasedStock[]
+}
+
+model PurchasedStock {
+  id              String            @id @default(uuid())
+  ItemId          String
+  Items           Items             @relation(fields: [ItemId], references: [id])
+  Quantity        Decimal
+  Amount          Float
+  GSTAmount       Float
+  Status          String            // Paid, Unpaid
+  SupplierId      String
+  Suppliers       Suppliers         @relation(fields: [SupplierId], references: [id])
+  HotelId         String
+  Hotel           Hotels            @relation(fields: [HotelId], references: [id])
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+} 
+
+// model DailyStock {
+//   id              String            @id @default(uuid())
+//   
+//   Status          String
+//
+//   HotelId         String
+//   Hotel           Hotels            @relation(fields: [HotelId], references: [id])
+//   createdAt       DateTime          @default(now())
+//   updatedAt       DateTime          @updatedAt
+// }
+//
+// model ExpiredStock {
+//
+// }
+//
+// model WastedStock {
+//
+// }
+//
+// model DamagedStock {
+//
+// }

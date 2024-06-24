@@ -2,9 +2,7 @@
 import { z } from "zod";
 
 const hotelNameValidation = z
-	.string()
-	.min(5, {message: "Hotel Name must be atleast 5 characters."})
-	.max(30, {message: "Hotel Name must be atmost 30 characters."});
+	.string();
 
 const emailValidation = z
 	.string()
@@ -28,7 +26,10 @@ const contactValidation = z
 
 const websiteValidation = z
 	.string()
-	.url({message: 'Invalid Website.'});
+	.optional();
+
+const fssaiValidation = z
+	.string();
 
 export const hotel_add = z.object({
 	hotel_name: hotelNameValidation,
@@ -38,6 +39,7 @@ export const hotel_add = z.object({
 	speciality: specialityValidation,
 	ratings: ratingsValidation,
 	contact: contactValidation,
-	website: websiteValidation
+	website: websiteValidation,
+	fssai_code: fssaiValidation
 })
 

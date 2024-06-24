@@ -1,6 +1,6 @@
-import { z } from "zod";
+import { z } from "zod"; 
 
-const usernameValidation = z
+const nameValidation = z
 	.string();
 
 const emailValidation = z
@@ -11,9 +11,12 @@ const passwordValidation = z
 	.string()
 	.min(6, {message: "Password must be atleast 6 characters."});
 
-export const register = z.object({
-	username: usernameValidation,
-	email: emailValidation,
-	password: passwordValidation
-})
+const hotelIdValidation = z
+	.string();
 
+export const hotelOwnersSchema = z.object({
+	owner_name: nameValidation,
+	email: emailValidation,
+	password: passwordValidation,
+	hotel_id: hotelIdValidation
+})
