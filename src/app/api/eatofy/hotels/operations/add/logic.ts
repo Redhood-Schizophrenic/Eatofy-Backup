@@ -17,7 +17,7 @@ export async function add_hotel(data: any): Promise<HotelResponse> {
 		const logo: File | null = data.get('logo');
 
 		console.log(hotel_name, email, password, address, speciality, contacts, website, fssai_code)
-
+		console.log(logo);
 		// Default Invalid Checker
 		if (hotel_name == null || email == null || password == null || address == null || speciality == null || contacts == null || website == null || logo == null || fssai_code == null) {
 			return {

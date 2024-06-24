@@ -2,7 +2,8 @@ import db from '@/lib/db';
 import { hotel_subscription_add } from '@/schemas/Subscriptions/HotelSubscriptions/add';
 import { HotelSubscriptionResponse } from '@/types/HotelSubscriptionResponse';
 import HotelSubscription from '@/model/HotelSubscription';
-import { SafeParseReturnType, ZodError } from 'zod';
+import { SubscriptionEmailSender } from '@/lib/utils/emails/Subscription';
+import { ZodError } from 'zod';
 
 export async function add_hotel_subscription(data: any): Promise<HotelSubscriptionResponse> {
 	try {
@@ -59,6 +60,8 @@ export async function add_hotel_subscription(data: any): Promise<HotelSubscripti
 			}
 		}
 
+
+
 		// Inserting the Subscription Data
 		const result: HotelSubscription[] = await db.hotel_Subscription.create({
 			data: {
@@ -70,13 +73,48 @@ export async function add_hotel_subscription(data: any): Promise<HotelSubscripti
 			},
 		});
 
+		// If Hotel doesn't exists
+
+		const existingHotelSubscription = await db.hotel_Subscription.findMany({
+			where: {
+				HotelId: hotel_id,
+				SubscriptionId: subscription_id
+			},
+			include: {
+				Hotel: true,
+				Subscription: true
+			}
+		});
+
+		const hotel_name = existingHotelSubscription[0].Hotel.HotelName;
+		const subscription_name = existingHotelSubscription[0].Subscription.SubscriptionName;
+		const price = existingHotelSubscription[0].Subscription.Price;
+		const email = existingHotelSubscription[0].Hotel.Email;
+
 		db.$disconnect();
 
-		return {
-			returncode: 200,
-			message: "Subscription Added",
-			output: result
-		};
+		try {
+			const email_sent = await (SubscriptionEmailSender(hotel_name, subscription_name, start_date, end_date, `${price}`, email));
+			if (email_sent.returncode == 200) {
+
+
+				return {
+					returncode: 200,
+					message: "Subscription Added",
+					output: result
+				};
+			}
+			else {
+				return email_sent;
+			}
+		} catch (err: any) {
+
+			return {
+				returncode: 500,
+				message: err.message,
+				output: []
+			};
+		}
 
 	} catch (error: any) {
 		return {
