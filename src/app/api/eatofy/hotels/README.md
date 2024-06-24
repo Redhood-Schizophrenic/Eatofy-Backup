@@ -23,7 +23,6 @@ http://localhost:3000/api/eatofy/hotels/operations/add
         "Desserts",
         "Beverages"
     ],
-    "ratings": 4.5,
     "contacts": [
         "1234567890",
         "1234567891"
@@ -61,7 +60,6 @@ http://localhost:3000/api/eatofy/hotels/operations/update/details
         "Desserts",
         "Beverages"
     ],
-    "ratings": 4.5,
     "contacts": [
         "1234567890",
         "1234567891"
